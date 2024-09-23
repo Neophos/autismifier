@@ -23,10 +23,11 @@ impl EventHandler for Bot {
     }
 }
 
-pub async fn start(secrets: SecretStore) -> shuttle_serenity::ShuttleSerenity {
+pub async fn start(secrets: SecretStore) -> Client {
     let token = secrets
         .get("DISCORD_TOKEN")
-        .context("'DISCORD_TOKEN' was not found")?;
+        .context("'DISCORD_TOKEN' was not found")
+        .unwrap();
 
     // Set gateway intents, which decides what events the bot will be notified about
     let intents = GatewayIntents::GUILD_MESSAGES | GatewayIntents::MESSAGE_CONTENT;
@@ -36,5 +37,5 @@ pub async fn start(secrets: SecretStore) -> shuttle_serenity::ShuttleSerenity {
         .await
         .expect("Err creating client");
 
-    Ok(client.into())
+    return client
 }
