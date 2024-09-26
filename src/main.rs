@@ -1,5 +1,5 @@
 use anyhow::Context as _;
-use serenity::{all::GatewayIntents, all::Client};
+use serenity::all::{Client, GatewayIntents};
 use shuttle_runtime::SecretStore;
 
 pub mod bulkanalyser;
